@@ -120,8 +120,9 @@ $(function() {
 				$('#losersBody').empty();
 				$('#loseFacultLength').empty();
 				console.log(data);
-				for (let i in data) {
-					let retakeInfo = data[i];
+				let retakeInfoArrays = data.retakeInfo;
+
+				for (let retakeInfo of retakeInfoArrays) {
 					var newTr = $('<tr/>');
 					$(newTr).appendTo($('#losersBody'));
 					$('<td/>').addClass('loser').text(retakeInfo.student).appendTo(newTr);
@@ -130,25 +131,12 @@ $(function() {
 					$('<td/>').addClass('loserSpecial').text(retakeInfo.s).appendTo(newTr);
 				}
 
-				const facultCounterArray = [];
-				for (let studentData of data) {
-					let faculty = studentData.f;
-					let facultCounterData = facultCounterArray.find((el) => faculty === el.faculty);
-					if (facultCounterData) {
-						facultCounterData.facultCounter++;
-					} else {
-						facultCounterArray.push({
-							facultCounter: 1,
-							faculty
-						});
-					}
-				}
-
-				for (let facultCounterData of facultCounterArray) {
-					console.log(facultCounterData);
+				let facultCounterInfo = data.facultCounterInfo;
+				for (let faculty in facultCounterInfo) {
+					let facultCounter = facultCounterInfo[faculty];
 					var newTr = $('<tr/>');
 					$(newTr).appendTo($('#loseFacultLength'));
-					$('<td/>').text(facultCounterData.faculty + ': ' + facultCounterData.facultCounter).appendTo(newTr);
+					$('<td/>').text(faculty + ': ' + facultCounter).appendTo(newTr);
 				}
 			},
 			'json'
