@@ -109,6 +109,8 @@ $(function() {
 		});
 	}
 
+	//Функція, яка при клацанні на кнопку Retake показує список тих студентів, у яких є оцінка незадовільно
+	//з якого-небудь предмету
 	$('#retake').click(function() {
 		let retakeUrl = 'http://localhost:3000/retake';
 
@@ -188,6 +190,7 @@ $(function() {
 		});
 	}
 
+	//Функція, яка додає нового студента
 	function newStudEvent() {
 		$('#addStud').click(function() {
 			let newStudUrl = 'http://localhost:3000/addStud';
@@ -213,6 +216,7 @@ $(function() {
 		});
 	}
 
+	//Функція, яка видаляє вибраного студента
 	function deleteStudent() {
 		$('#delStud').click(function() {
 			$('button.deleteEachStud').remove();
